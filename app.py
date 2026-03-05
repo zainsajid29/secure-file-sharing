@@ -4,13 +4,12 @@ import os
 import time
 import base64
 
-# Key Setup (Security)
 if 'file_key' not in st.session_state:
     st.session_state.file_key = Fernet.generate_key()
 cipher = Fernet(st.session_state.file_key)
 
 st.title("📁 Secure File Sharing Portal")
-st.write("End-to-End Encrypted Storage (No Credit Card Required)")
+st.write("End-to-End Encrypted Storage")
 
 # --- UPLOAD SECTION ---
 uploaded_file = st.file_uploader("Choose a file to secure")
