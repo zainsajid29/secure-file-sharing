@@ -4,12 +4,9 @@ import os
 import time
 import base64
 
-FIXED_KEY = b'6f6_8vXyG7U0N6yW4_V0-f8m4p-o9Xz9-l5R4k3J2H1='
-
-if 'cipher' not in st.session_state:
-    st.session_state.cipher = Fernet(FIXED_KEY)
-
-cipher = st.session_state.cipher
+if 'file_key' not in st.session_state:
+    st.session_state.file_key = Fernet.generate_key()
+cipher = Fernet(st.session_state.file_key)
 
 st.title("📁 Secure File Sharing Portal")
 st.write("End-to-End Encrypted Storage")
@@ -56,5 +53,4 @@ if st.button("Generate Secure Link"):
         data=dec_content,
         file_name=selected_file.replace(".enc", ""),
         mime="application/octet-stream"
-
     )
